@@ -1,3 +1,5 @@
+include ../mixins/mixins
+
 doctype html
 html(lang="en")
     head
@@ -7,8 +9,34 @@ html(lang="en")
         title #{pageTitle}
         
         link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css', rel='stylesheet', integrity='sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi', crossorigin='anonymous')
+        link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css')
+        link(rel="stylesheet", href="/css/main.css")
     body
-        block content
+        .wrapper
+            .row
+                nav.col-2
+                    a.blue(href="/")
+                        i.bi.bi-twitter
+                    a(href="/")
+                        i.bi.bi-house-door
+                    a(href="/search")
+                        i.bi.bi-search
+                    a(href="/notifications")
+                        i.bi.bi-bell
+                    a(href="/message")
+                        i.bi.bi-envelope
+                    a(href="/profile")
+                        i.bi.bi-person-fill
+                    a(href="/logout")
+                        i.bi.bi-escape 
+                .mainSectionContainer.col-10.col-md-8.col-lg-6
+                    .titleContainer
+                        h1 #{pageTitle}
+                    block content
+                .d-none.d-md-block.col-md-2.col-lg-4
+                    span third column
+        
 
         script(src='https://code.jquery.com/jquery-3.6.1.min.js', integrity='sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=', crossorigin='anonymous')
         script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js', integrity='sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3', crossorigin='anonymous')
+        script(src="/js/common.js") 
