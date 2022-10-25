@@ -25,12 +25,14 @@ router.post("/", async (req, res, next) => {
     }
 
     Post.create(postData)
-    .then()
-    .catch((error)=>{
-        
+    .then(async (newPost)=>{
+        newPost = await User.populate(newPost, { path:"postedBy" })
+        res.status(201).send(newPost);
     })
-
-    res.status(200).send("it worked");
+    .catch((error)=>{
+        console.log(error);
+        res.sendStatus(400);
+    })
 });
 
 module.exports = router;
