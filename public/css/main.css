@@ -4,6 +4,8 @@
     --light-grey: rgb(230, 236, 240); 
     --spacing: 15px;
     --blue-light: #9bd1f9;
+    --grey-text: rgb(101, 119, 134);
+    --grey-button-text: rgba(0, 0, 0, 0.34);
 }
 
 *{
@@ -51,6 +53,12 @@ nav a:hover{
     background-color: var(--button-hover-bg);
     color: var(--blue);
     border-radius: 50%;
+}
+
+button{
+    background-color: transparent;
+    border: none;
+    color: var(--grey-button-text);
 }
 
 .mainSectionContainer{
@@ -115,3 +123,66 @@ nav a:hover{
 #submitPostButton:disabled{
     background-color: var(--blue-light);
 }
+
+.post{
+    display: flex;
+    flex-direction: column;
+    padding: var(--spacing);
+    cursor: pointer;
+    border-bottom: 1px solid var(--light-grey);
+    flex-shrink: 0;
+}
+
+.mainContentContainer{
+    flex: 1;
+    display: flex;
+}
+
+.postContentContainer{
+    padding-left: var(--spacing);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.postBody{
+    padding: 4px 1px;
+}
+
+.username,
+.date{
+    color: var(--grey-text);
+}
+
+.displayName{
+    font-weight: bold;
+}
+
+.postFooter{
+    display: flex;
+    align-items: center;
+}
+.postFooter .postButtonContainer{
+    flex: 1;
+    display: flex;
+}
+
+.postFooter .postButtonContainer button{
+    padding: 0 5px;
+}
+
+.header a:hover{
+    text-decoration: underline;
+}
+
+.header a,
+.header span{
+    padding-right: 5px;
+}
+
+.postButtonContainer button:hover{
+    background-color: #d4edff;
+    color: var(--blue);
+    border-radius: 30%;
+}
+
