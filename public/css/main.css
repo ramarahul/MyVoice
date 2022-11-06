@@ -6,6 +6,10 @@
     --blue-light: #9bd1f9;
     --grey-text: rgb(101, 119, 134);
     --grey-button-text: rgba(0, 0, 0, 0.34);
+    --red: rgb(226,34,94);
+    --red-background: rgba(226,34,94,0.1);
+    --green: rgb(23,191,99);
+    --green-background: rgba(23,191,99,0.1);
 }
 
 *{
@@ -59,6 +63,11 @@ button{
     background-color: transparent;
     border: none;
     color: var(--grey-button-text);
+}
+
+button i,
+button span{
+    pointer-events: none;
 }
 
 .mainSectionContainer{
@@ -184,5 +193,23 @@ button{
     background-color: #d4edff;
     color: var(--blue);
     border-radius: 30%;
+}
+
+.postButtonContainer.red button.active{
+    color: var(--red);
+}
+
+.postButtonContainer.red button:hover{
+    color: var(--red);
+    background-color: var(--red-background);
+}
+
+.postButtonContainer.green button.active{
+    color: var(--green);
+}
+
+.postButtonContainer.green button:hover{
+    color: var(--green);
+    background-color: var(--green-background);
 }
 

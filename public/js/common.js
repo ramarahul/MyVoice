@@ -36,6 +36,49 @@ $("#submitPostButton").click((event)=>{
 $(document).on("click",".likeButton", (event)=>{
     var button = $(event.target);
     var postId = getPostIdFromElement(button);
+
+    if(postId === undefined){
+        return;
+    }
+
+    $.ajax({
+        url: `/api/posts/${postId}/like`,
+        type: "PUT",
+        success: (postData)=>{
+            button.find("span").text(postData.likes.length || "");
+
+            if(postData.likes.includes(userLoggedIn._id)){
+                button.addClass("active");
+            }
+            else{
+                button.removeClass("active");
+            }
+        }
+    })
+})
+
+$(document).on("click",".retweetButton", (event)=>{
+    var button = $(event.target);
+    var postId = getPostIdFromElement(button);
+
+    if(postId === undefined){
+        return;
+    }
+
+    $.ajax({
+        url: `/api/posts/${postId}/retweet`,
+        type: "POST",
+        success: (postData)=>{
+            button.find("span").text(postData.retweetUsers.length || "");
+
+            if(postData.retweetUsers.includes(userLoggedIn._id)){
+                button.addClass("active");
+            }
+            else{
+                button.removeClass("active");
+            }
+        }
+    })
 })
 
 function getPostIdFromElement(element){
@@ -50,9 +93,20 @@ function getPostIdFromElement(element){
 
 function createPostHtml(postData){
 
+    if(postData === null){
+        return alert("Post object is null");
+    }
+
+    var isRetweet = postData.retweetData !== undefined;
+    var retweetedBy = isRetweet ? postData.postedBy.username : null;
+    postData = isRetweet ? postData.retweetData : postData;
+
     var postedBy = postData.postedBy;
     var displayName = postedBy.firstName + " " + postedBy.lastName;
     var timestamp = timeDifference(new Date(), new Date(postData.createdAt));
+
+    var likeButtonActiveClass = postData.likes.includes(userLoggedIn._id) ? "active": "";
+    var retweetButtonActiveClass = postData.retweetUsers.includes(userLoggedIn._id) ? "active": "";
 
     return `<div class='post' data-id='${postData._id}'>
         <div class='mainContentContainer'>
@@ -74,14 +128,16 @@ function createPostHtml(postData){
                             <i class="bi bi-chat"></i>
                         </button>
                     </div>
-                    <div class='postButtonContainer'>
-                        <button>
+                    <div class='postButtonContainer green'>
+                        <button class='retweetButton ${retweetButtonActiveClass}'>
                             <i class="bi bi-arrow-repeat"></i>
+                            <span>${postData.retweetUsers.length || ""}</span>
                         </button>
                     </div>
-                    <div class='postButtonContainer'>
-                        <button class='likeButton'>
+                    <div class='postButtonContainer red'>
+                        <button class='likeButton ${likeButtonActiveClass}'>
                             <i class="bi bi-heart"></i>
+                            <span>${postData.likes.length || ""}</span>
                         </button>
                     </div>
                 </div>
