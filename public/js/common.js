@@ -113,6 +113,15 @@ $(document).on("click",".retweetButton", (event)=>{
     })
 })
 
+$(document).on("click",".post", (event)=>{
+    var element = $(event.target);
+    var postId = getPostIdFromElement(element);
+
+    if(postId !== undefined){
+        window.location.href = '/post/' + postId;
+    }
+})
+
 function getPostIdFromElement(element){
     var isRoot = element.hasClass("post");
     var rootElement = isRoot ? element: element.closest(".post");
