@@ -213,3 +213,9 @@ button span{
     background-color: var(--green-background);
 }
 
+.postActionContainer{
+    padding-left: 35px;
+    font-size: 13px;
+    color: var(--grey-text);
+    margin-bottom: 5px;
+}
