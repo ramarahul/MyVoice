@@ -295,7 +295,7 @@ function outputPosts(results, container){
     })
 
     if(results.length === 0){
-        container.append("<span class='noResults'>Nothing to show here. Please follow someone or post something to get some results</span>")
+        container.append("<span class='noResults'>Nothing to show here</span>")
     }
 }
 
