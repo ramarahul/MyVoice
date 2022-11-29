@@ -35,10 +35,10 @@ mixin createDeletePostModal()
                     button.btn-close(type='button', data-bs-dismiss='modal', aria-label='Close')
                         //span(aria-hidden='true') &times;
                 .modal-body
-                    p You won't be able to delete this.
+                    p Are you sure you want to delete this post?
                 .modal-footer
-                    button.btn.btn-secondary(type='button', data-bs-dismiss='modal') Close
-                    button#deletePostButton.btn.btn-primary(type='button') Delete
+                    button.btn.btn-secondary(type='button', data-bs-dismiss='modal') No
+                    button#deletePostButton.btn.btn-primary(type='button') Yes
 
 mixin createPostModals(userLoggedIn)
     +createReplyModal(userLoggedIn)

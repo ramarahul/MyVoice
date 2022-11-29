@@ -147,6 +147,12 @@ $(document).on("click",".post", (event)=>{
     }
 })
 
+$(document).on("click",".followButton", (event)=>{
+    var button = $(event.target);
+    var userId = button.data().user;
+
+});
+
 function getPostIdFromElement(element){
     var isRoot = element.hasClass("post");
     var rootElement = isRoot ? element: element.closest(".post");
